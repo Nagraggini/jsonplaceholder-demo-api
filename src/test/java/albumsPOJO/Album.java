@@ -13,6 +13,9 @@ public class Album {
 	private String title;
 	
 	// Contructors
+	public Album() {
+    }
+	
 	public Album(int userId, int id, String title) {
 		super();
 		this.userId = userId;
