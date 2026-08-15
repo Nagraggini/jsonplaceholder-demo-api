@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 import albumsPOJO.Album;
 import base.BaseApiTest;
 
-class AlbumList extends BaseApiTest{
+class AlbumListTest extends BaseApiTest{
 
 	/**
 	 * Task 1 – Get and Search for One Album
@@ -55,7 +55,7 @@ class AlbumList extends BaseApiTest{
 	}
 	
 	/**
-	 * List contains userId, id, and title fields.
+	 * Task 2 – List contains userId, id, and title fields.
 	 */
 	@Test
 	@DisplayName("List contains userId, id, and title fields.")
