@@ -50,42 +50,17 @@ class PostAlbumTest extends BaseApiTest {
 	album.setTitle("My Rest Assured Test Album");
 	
 	Response responseObj=	given()
-		.contentType(ContentType.JSON) // Also include BaseApiTest class
+		.contentType(ContentType.JSON) // Also include BaseApiTest class.
 		.body(album)
 		.when().post("/albums")
 		.then().log().ifValidationFails()
 		.statusCode(201)
 		.body("id",notNullValue())
 		.body("userId", equalTo(4))
-		.body("title",equalTo("My Rest Assured Test Album")).extract().response();
+		.body("title",equalTo("My Rest Assured Test Album"))
+		.extract().response();
 	
 	album=responseObj.as(Album.class);
 	System.out.println("New id is: "+album.getId());
 	}
-	
-	/**
-	 * Task 8 – Create an Album Using an Invalid Endpoint
-	
-	Endpoint:
-	
-	POST https://jsonplaceholder.typicode.com/invalid-albums
-	
-	Request body:
-	
-	{
-	  "userId": 4,
-	  "title": "Invalid Endpoint Test"
-	}
-	
-	Requirements:
-	
-	Send a POST request to /invalid-albums.
-	Set the request content type to JSON.
-	Add the provided data to the request body.
-	Verify that the status code is 404.
-	Log the response only if validation fails.
-	 */
-	
-	
-
 }
