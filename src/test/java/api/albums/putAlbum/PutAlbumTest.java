@@ -2,9 +2,17 @@ package api.albums.putAlbum;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class PutAlbumTest {
+import albumsPOJO.Album;
+import base.BaseApiTest;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+
+import static io.restassured.RestAssured.*;
+
+class PutAlbumTest extends BaseApiTest {
 
 	/**
 	 * Task 9 – Update an Existing Album
@@ -35,8 +43,31 @@ class PutAlbumTest {
 	Log the response only if validation fails.
 	 */
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	@DisplayName("Task 9 – Update an Existing Album")
+	void updateAnExistingAlbum() {
+		Album album=new Album();
+		
+		album.setUserId(3);
+		album.setId(25);
+		album.setTitle("Updated Rest Assured Album");
+		
+		Response responseObj=given()
+			.contentType(ContentType.JSON) // Also include BaseApiTest class.
+			.body(album)
+		.when()
+			.put("/albums/25")
+		.then()
+			.log().ifValidationFails()
+			.statusCode(200)
+			.extract().response();
+		
+		album=responseObj.as(Album.class);
+		assertEquals(3,album.getUserId());
+		assertEquals(25,album.getId());
+		assertEquals("Updated Rest Assured Album",album.getTitle());
+		
+		System.out.printf("Updated album’s ID: %s \nAnd title: %s",album.getUserId(),album.getTitle());
+		
 	}
 
 }
