@@ -41,7 +41,12 @@ class AlbumListTest extends BaseApiTest{
 	@DisplayName("Get album list")
 	void getAlbumList() {
 		List<Album> albums=
-			given().when().get("/albums").then().log().ifValidationFails().statusCode(200)
+			given()
+			.when()
+				.get("/albums")
+			.then()
+				.log().ifValidationFails()
+				.statusCode(200)
 				.body("$", instanceOf(List.class))
 				.body("$", notNullValue())
 				.body("$", not(empty()))
@@ -60,11 +65,15 @@ class AlbumListTest extends BaseApiTest{
 	@Test
 	@DisplayName("List contains userId, id, and title fields.")
 	void albumListContainsSpecificFields() {
-					given().when().get("/albums").then().log().ifValidationFails().statusCode(200)
-				.body("$", everyItem(allOf(hasKey("userId")
+					given()
+					.when()
+						.get("/albums")
+					.then()
+						.log().ifValidationFails()
+						.statusCode(200)
+						.body("$", everyItem(allOf(hasKey("userId")
 						,hasKey("id")
 						,hasKey("title"))));
-
 		
 	}
 	
