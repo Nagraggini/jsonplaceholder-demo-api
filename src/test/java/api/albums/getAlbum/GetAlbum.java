@@ -35,8 +35,14 @@ class GetAlbum extends BaseApiTest{
 	@Test
 	@DisplayName("Get and Search for One Album")
 	void getAndSearchForOneAlbumTest() {
-		Album album=given().when().get("/albums/25").then().log().ifValidationFails()
-		.statusCode(200).extract().jsonPath().getObject("",Album.class);
+		Album album=
+				given()
+				.when()
+					.get("/albums/25")
+				.then()
+					.log().ifValidationFails()
+					.statusCode(200)
+					.extract().jsonPath().getObject("",Album.class);
 		
 		assertEquals(3,album.getUserId());
 		assertEquals(25,album.getId());
