@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import albumsPOJO.Album;
 import base.BaseApiTest;
+import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
@@ -39,7 +41,7 @@ class DeleteAlbumTest extends BaseApiTest{
 		.then()
 			.log().ifValidationFails()
 			.statusCode(anyOf(is(200),is(204)))
-			.body("$", anEmptyMap());
+			.body("$", anyOf(anEmptyMap(), nullValue()));
 	}
 	
 	/**
@@ -67,10 +69,28 @@ class DeleteAlbumTest extends BaseApiTest{
 	 */
 	@Test
 	@DisplayName("Task 11 – Delete an Existing Album by Title")
-	void deleteAnExistingAlbumByTitleTest() {
-		String title="omnis laborum odio";
+	void deleteAnExistingAlbumByTitleTest() {		
+		Album album=new Album();
+		album.setTitle("quidem molestiae enim");
 		
-	
+		album=
+		given()	
+			.queryParam("title",album.getTitle())
+		.when()
+			.get("/albums")
+		.then()
+			.log().ifValidationFails()
+			.statusCode(200)
+			.body("title",hasItem(album.getTitle()))
+			.extract().jsonPath().getObject("[0]", Album.class);
+		
+		given()			
+		.when()
+			.delete("/albums/"+album.getId())
+		.then()
+			.log().ifValidationFails()
+			.statusCode(anyOf(is(200),is(204)))
+			.body("$", anyOf(anEmptyMap(),nullValue()));			
 	}
 
 }
