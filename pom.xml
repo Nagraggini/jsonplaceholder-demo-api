@@ -31,7 +31,8 @@
             <scope>compile</scope>
         </dependency>
     
-        <!--A response válaszokból esetleges objektumképzéshez szükség van json feldolgozó importra is, pl.: jackson -->
+        <!--A response válaszokból esetleges objektumképzéshez szükség van json feldolgozó importra is,
+         pl.: jackson -->
         <!-- Source: https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
