@@ -106,4 +106,29 @@ class CommentListTest extends BaseApiTest{
 	Verify that every body is neither null nor empty.
 	Log the response only if validation fails.
 	 */
+	@Test
+	@DisplayName("Task 103 – Verify That Required Fields Contain Valid Values")
+	void verifyThatRequiredFieldsContainValidValues() {
+		given()
+		.when()
+			.get("/comments")
+		.then()
+			.log().ifValidationFails()
+			.statusCode(200)
+			.body("$.postId",everyItem(greaterThan(0)))
+			.body("$.id",everyItem(greaterThan(0)))
+			.body("$.name",everyItem(allOf(not(empty()),notNullValue())))
+			.body("$.email",everyItem(allOf(not(empty()),notNullValue())))
+			.body("$.body",everyItem(allOf(not(empty()),notNullValue())));		
+	}	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

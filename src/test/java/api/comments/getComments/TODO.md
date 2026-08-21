@@ -1,30 +1,6 @@
 
 
-Task 104 – Retrieve a Comment by ID
-
-Endpoint:
-
-GET /comments/{id}
-
-Test data:
-
-id = 1
-
-Requirements:
-
-Send a GET request using the comment ID as a path parameter.
-Verify that the status code is 200.
-Verify the following values:
-postId is 1
-id is 1
-name is "id labore ex et quam laborum"
-email is "Eliseo@gardner.biz"
-Verify that the body contains the word "laudantium".
-Deserialize the complete response into a Comment object.
-Use JUnit assertions to verify the ID and email stored in the object.
-Log the response only if validation fails.
-
-Task 5 – Filter Comments by Post ID
+Task 105 – Filter Comments by Post ID
 
 Endpoint:
 
@@ -64,6 +40,7 @@ Verify that both responses contain exactly five comments.
 Verify that every returned comment has a postId of 10.
 Verify that the two extracted ID lists are equal.
 Log responses only if validation fails.
+
 Task 7 – Search for a Comment by Email
 
 Endpoint:
@@ -84,6 +61,7 @@ Verify that the response contains the specified email address.
 Extract the first result into a Comment object.
 Use a JUnit assertion to verify the email stored in the extracted object.
 Log the response only if validation fails.
+
 Task 8 – Search for a Nonexistent Comment
 
 Endpoint:
@@ -101,6 +79,7 @@ Verify that the status code is 200.
 Verify that the response is a JSON array.
 Verify that the returned array is empty.
 Log the response only if validation fails.
+
 Task 9 – Deserialize a List of Comments
 
 Endpoint:
@@ -120,6 +99,7 @@ the first comment has ID 96;
 the last comment has ID 100;
 every comment has a postId of 20.
 Log the response only if validation fails.
+
 Task 10 – Create a New Comment Using a POJO
 
 Endpoint:
@@ -145,6 +125,7 @@ Verify that the returned postId, name, email, and body match the submitted value
 Deserialize the response into a Comment object.
 Use a JUnit assertion to verify that the returned ID is greater than zero.
 Log the response only if validation fails.
+
 Task 11 – Replace an Existing Comment
 
 Endpoint:
@@ -174,6 +155,7 @@ Verify that every returned field matches the submitted data.
 Deserialize the response into a Comment object.
 Verify the values stored in the object.
 Log the response only if validation fails.
+
 Task 12 – Partially Update an Existing Comment
 
 Endpoint:
@@ -198,6 +180,7 @@ Verify that the returned ID is still 10.
 Verify that the returned email is "patched@test.com".
 Verify that the original postId, name, and body fields are still present.
 Log the response only if validation fails.
+
 Task 13 – Delete a Comment Found by Email
 
 Endpoints:
@@ -214,3 +197,4 @@ Requirements:
 Search for a comment using the specified email address.
 Verify that the search request returns status code 200.
 Verify that the search result is
+
