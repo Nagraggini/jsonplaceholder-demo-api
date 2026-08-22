@@ -120,15 +120,5 @@ class CommentListTest extends BaseApiTest{
 			.body("$.name",everyItem(allOf(not(empty()),notNullValue())))
 			.body("$.email",everyItem(allOf(not(empty()),notNullValue())))
 			.body("$.body",everyItem(allOf(not(empty()),notNullValue())));		
-	}	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	}		
 }

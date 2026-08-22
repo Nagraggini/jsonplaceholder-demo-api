@@ -1,106 +1,6 @@
 
 
-Task 105 – Filter Comments by Post ID
-
-Endpoint:
-
-GET /comments?postId={postId}
-
-Test data:
-
-postId = 5
-
-Requirements:
-
-Send a GET request using postId as a query parameter.
-Verify that the status code is 200.
-Verify that the response contains exactly five comments.
-Verify that every returned comment has a postId of 5.
-Verify that the returned comment IDs are exactly:
-21
-22
-23
-24
-25
-Verify the IDs in the expected order.
-Log the response only if validation fails.
-Task 6 – Compare Filtered and Nested Comment Routes
-
-Endpoints:
-
-GET /comments?postId=10
-GET /posts/10/comments
-
-Requirements:
-
-Send a GET request to both endpoints.
-Verify that both requests return status code 200.
-Extract the comment IDs from both responses.
-Verify that both responses contain exactly five comments.
-Verify that every returned comment has a postId of 10.
-Verify that the two extracted ID lists are equal.
-Log responses only if validation fails.
-
-Task 7 – Search for a Comment by Email
-
-Endpoint:
-
-GET /comments?email={email}
-
-Test data:
-
-email = Eliseo@gardner.biz
-
-Requirements:
-
-Store the email address in a separate variable.
-Search for comments using the email address as a query parameter.
-Verify that the status code is 200.
-Verify that the response is not empty.
-Verify that the response contains the specified email address.
-Extract the first result into a Comment object.
-Use a JUnit assertion to verify the email stored in the extracted object.
-Log the response only if validation fails.
-
-Task 8 – Search for a Nonexistent Comment
-
-Endpoint:
-
-GET /comments?email={email}
-
-Test data:
-
-email = not-existing@example.com
-
-Requirements:
-
-Search for comments using the nonexistent email address.
-Verify that the status code is 200.
-Verify that the response is a JSON array.
-Verify that the returned array is empty.
-Log the response only if validation fails.
-
-Task 9 – Deserialize a List of Comments
-
-Endpoint:
-
-GET /comments?postId=20
-
-Requirements:
-
-Send a GET request using postId = 20.
-Verify that the status code is 200.
-Deserialize the complete response into a List<Comment>.
-Use JUnit assertions to verify that:
-the list is not null;
-the list is not empty;
-the list contains exactly five elements;
-the first comment has ID 96;
-the last comment has ID 100;
-every comment has a postId of 20.
-Log the response only if validation fails.
-
-Task 10 – Create a New Comment Using a POJO
+Task 110 – Create a New Comment Using a POJO
 
 Endpoint:
 
@@ -126,7 +26,7 @@ Deserialize the response into a Comment object.
 Use a JUnit assertion to verify that the returned ID is greater than zero.
 Log the response only if validation fails.
 
-Task 11 – Replace an Existing Comment
+Task 111 – Replace an Existing Comment
 
 Endpoint:
 
@@ -156,7 +56,7 @@ Deserialize the response into a Comment object.
 Verify the values stored in the object.
 Log the response only if validation fails.
 
-Task 12 – Partially Update an Existing Comment
+Task 112 – Partially Update an Existing Comment
 
 Endpoint:
 
@@ -181,7 +81,7 @@ Verify that the returned email is "patched@test.com".
 Verify that the original postId, name, and body fields are still present.
 Log the response only if validation fails.
 
-Task 13 – Delete a Comment Found by Email
+Task 113 – Delete a Comment Found by Email
 
 Endpoints:
 
