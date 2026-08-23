@@ -33,7 +33,7 @@ class GetAlbum extends BaseApiTest{
 	title: vero maxime id possimus sunt neque et consequatur
 	 */
 	@Test
-	@DisplayName("Get and Search for One Album")
+	@DisplayName("Task 3 – Get and Search for One Album")
 	void getAndSearchForOneAlbumTest() {
 		Album album=
 				given()
@@ -50,7 +50,7 @@ class GetAlbum extends BaseApiTest{
 	}
 	
 	@Test
-	@DisplayName("2.Solution for Get and Search for One Album")
+	@DisplayName("Task 3 – 2.Solution for Get and Search for One Album")
 	void getAndSearchForOneAlbumTest2() {
 	    Album album = given()
 	        .when()
@@ -86,7 +86,7 @@ class GetAlbum extends BaseApiTest{
 	Verify that every album in the filtered list has userId = 7.
 		 */
 	@Test
-	@DisplayName("Filter Albums by User ID")
+	@DisplayName("Task 4 – Filter Albums by User ID")
 	void filterAlbumsByUserIDTest () {
 		given()
 			.queryParam("userId", 7) // Filtering
