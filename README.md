@@ -1,3 +1,5 @@
+[![Run Rest Assured API Tests](https://github.com/Nagraggini/jsonplaceholder-demo-api/actions/workflows/maven-tests.yml/badge.svg)](https://github.com/Nagraggini/jsonplaceholder-demo-api/actions/workflows/maven-tests.yml)
+
 # JSONPlaceholder API Test Automation
 
 Automated REST API test project built with **Java**, **REST Assured**, **JUnit 5**, and **Maven**.
@@ -80,7 +82,7 @@ chmod +x mvnw
 ./mvnw clean test
 ```
 
-### Windows
+### Windows (PowerShell)
 
 ```powershell
 mvnw.cmd clean test
