@@ -1,35 +1,88 @@
-name: Run Rest Assured API Tests
+name: API Tests and Allure Report
 
 on:
-  push:
-  pull_request:
-  workflow_dispatch:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+    workflow_dispatch:
+
+permissions:
+    contents: read
+    pages: write
+    id-token: write
+
+concurrency:
+    group: "pages"
+    cancel-in-progress: false
 
 jobs:
-  tests:
-    runs-on: ubuntu-latest
+    tests:
+        name: Run API Tests
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
 
-      - name: Set up JDK 21
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: "21"
-          cache: maven
+            - name: Set up JDK 21
+              uses: actions/setup-java@v4
+              with:
+                  distribution: temurin
+                  java-version: "21"
+                  cache: maven
 
-      - name: Make Maven Wrapper executable
-        run: chmod +x mvnw
+            - name: Make Maven Wrapper executable
+              run: chmod +x mvnw
 
-      - name: Run Maven tests
-        run: ./mvnw -B clean test
+            - name: Run Maven tests
+              run: ./mvnw -B clean test
+              continue-on-error: true # Akkor is lefusson a riportmentés, ha elbukik egy teszt
 
-      - name: Upload Surefire test reports
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: surefire-reports
-          path: target/surefire-reports
-          if-no-files-found: warn
+            - name: Upload Surefire test reports
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: surefire-reports
+                  path: target/surefire-reports
+                  if-no-files-found: warn
+
+            - name: Upload raw Allure results
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: allure-results
+                  path: target/allure-results
+                  if-no-files-found: warn
+
+    deploy-report:
+        name: Generate & Deploy Allure Report
+        needs: tests
+        # Csak akkor publikál a GitHub Pages-re, ha a fő ágon fut (PR-nél nem írja felül az élő oldalt)
+        if: always() && github.ref == 'refs/heads/main'
+        runs-on: ubuntu-latest
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+
+        steps:
+            - name: Download raw Allure results
+              uses: actions/download-artifact@v4
+              with:
+                  name: allure-results
+                  path: target/allure-results
+
+            - name: Install Allure Commandline
+              run: npm install -g allure-commandline
+
+            - name: Generate Allure Report
+              run: allure generate target/allure-results -o allure-report --clean
+
+            - name: Upload GitHub Pages Artifact
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  path: "allure-report"
+
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4
