@@ -1,16 +1,21 @@
 package api.photos.getPhotos;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.anEmptyMap;
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.emptyString;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import base.BaseApiTest;
+import static io.restassured.RestAssured.given;
 import photoPOJO.Photo;
-import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.*;
 
-class GetPhoto extends BaseApiTest {
+class GetPhotoTest extends BaseApiTest {
 
 	/**
 	 * Task 202 – Retrieve a Photo by ID
