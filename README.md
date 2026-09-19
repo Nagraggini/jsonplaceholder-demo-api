@@ -1,77 +1,69 @@
 [![Run Rest Assured API Tests](https://github.com/Nagraggini/jsonplaceholder-demo-api/actions/workflows/maven-tests.yml/badge.svg)](https://github.com/Nagraggini/jsonplaceholder-demo-api/actions/workflows/maven-tests.yml)
 
-![Top Language](https://img.shields.io/github/languages/top/Nagraggini/reqres)
-![Rest Assured](https://img.shields.io/badge/Rest%20Assured-API-orange) ![License](https://img.shields.io/badge/license-MIT-green)
+![Top Language](https://img.shields.io/github/languages/top/Nagraggini/jsonplaceholder-demo-api)
+![Rest Assured](https://img.shields.io/badge/Rest%20Assured-API-orange) 
+![License](https://img.shields.io/badge/license-MIT-green)
 
 # JSONPlaceholder API Test Automation
 
-Automated REST API test project built with **Java**, **REST Assured**, **JUnit 5**, and **Maven**.
+Automated REST API test automation framework built with **Java 21**, **REST Assured**, **JUnit 5**, **Jackson**, **Allure Report**, and **Maven**.
 
-The project uses the free [JSONPlaceholder](https://jsonplaceholder.typicode.com/) API to practise automated API testing, response validation, JSON processing, POJO serialization and deserialization, and positive and negative test scenarios.
+The project tests the free [JSONPlaceholder](https://jsonplaceholder.typicode.com/) fake REST API, focusing on positive and negative test scenarios, status code validations, JSON schema and body assertions, dynamic query parameters, and POJO serialization/deserialization.
 
 ## Allure Test Report
+
+The automated test results and execution reports are generated and published automatically via GitHub Actions:
+
 ![Allure Report](docs/assets/img/allure_report.png)         
 
-📊 [View the Allure Report](https://nagraggini.github.io/jsonplaceholder-demo-api/)
+📊 [View the Live Allure Report](https://nagraggini.github.io/jsonplaceholder-demo-api/)
 
-## Technologies
+## Technologies Used
 
-- Java 21
-- REST Assured 5.5.6
-- JUnit 5
-- Hamcrest Matchers
-- Jackson Databind
-- Maven
-- Maven Surefire Plugin
+- **Java 21**
+- **REST Assured 5.5.6**
+- **JUnit 5**
+- **Jackson Databind** (POJO mapping)
+- **Allure Framework** (Reporting)
+- **Maven** (Build & Dependency Management)
 
-## Test scenarios
+## Covered Endpoints & Test Scenarios
 
-The project contains or is being extended with the following album API scenarios:
+### Albums (`/albums`)
+- Fetch full album lists and validate response structures.
+- Fetch individual albums by ID (Positive & Negative 404 cases).
+- Filter albums by `userId`.
+- Create new albums (`POST`) and validate dynamic response data.
+- Update (`PUT`) and remove (`DELETE`) albums.
 
-- Get the complete album list
-- Validate the response status code, structure, and number of albums
-- Verify that every album contains the required fields
-- Get and validate a specific album by ID
-- Search for an album in the returned collection
-- Filter albums by user ID
-- Verify an empty result for a non-existing user ID
-- Verify the response for a non-existing album
-- Create a new album with a POST request
-- Validate the created album and extract its generated ID
-- Send a POST request to an invalid endpoint
+### Comments (`/comments`)
+- Fetch and validate full and filtered comment collections.
+- Create (`POST`), full update (`PUT`), partial update (`PATCH`), and delete (`DELETE`) comments.
+- Verify payload fields (`postId`, `name`, `email`, `body`).
 
-## Project structure
+### Photos (`/photos`)
+- Retrieve individual photo details and photo lists.
+- Validate photo metadata (`albumId`, `title`, `url`, `thumbnailUrl`).
+
+---
+
+## Project Structure
 
 ```text
 src/test/java
 ├── albumsPOJO
 │   └── Album.java
+├── commentPOJO
+│   └── Comment.java
+├── photoPOJO
+│   └── Photo.java
 ├── api
-│   └── albums
-│       ├── getAlbum
-│       └── postAlbum
+│   ├── albums
+│   ├── comments
+│   └── photos
 └── base
     └── BaseApiTest.java
-```
 
-- `BaseApiTest` contains the common base URI and JSON request configuration.
-- `Album` is the POJO used for JSON serialization and deserialization.
-- The `api` packages contain the positive and negative API test classes.
-
-## Example test
-
-```java
-@Test
-@DisplayName("Get a non-existing album")
-void getNonExistingAlbumTest() {
-    given()
-    .when()
-        .get("/albums/999")
-    .then()
-        .log().ifValidationFails()
-        .statusCode(404)
-        .body("$", anEmptyMap());
-}
 ```
 
 ## Running the tests
@@ -88,29 +80,14 @@ The Maven Wrapper is included, so a separate Maven installation is not required.
 ```bash
 chmod +x mvnw
 ./mvnw clean test
+
 ```
 
 ### Windows (PowerShell)
-
 ```powershell
 mvnw.cmd clean test
+
 ```
-
-## API under test
-
-Base URL:
-
-```text
-https://jsonplaceholder.typicode.com
-```
-
-Main resource used by the project:
-
-```text
-/albums
-```
-
-JSONPlaceholder is a fake API intended for learning and prototyping. Write operations such as POST do not permanently save the submitted data.
 
 ## Learning goals
 
@@ -124,11 +101,3 @@ This project demonstrates my practical experience with:
 - mapping JSON responses to Java objects;
 - extracting values and complete responses for further validation;
 - organizing reusable API test configuration.
-
-## Author
-
-Created by [Nagraggini](https://github.com/Nagraggini) as part of a software testing and Java learning portfolio.
-
-## License
-
-This project is available under the terms of the [MIT License](https://github.com/Nagraggini/jsonplaceholder-demo-api?tab=MIT-1-ov-file).
