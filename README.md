@@ -1,10 +1,18 @@
 [![Run Rest Assured API Tests](https://github.com/Nagraggini/jsonplaceholder-demo-api/actions/workflows/maven-tests.yml/badge.svg)](https://github.com/Nagraggini/jsonplaceholder-demo-api/actions/workflows/maven-tests.yml)
 
+![Top Language](https://img.shields.io/github/languages/top/Nagraggini/reqres)
+![Rest Assured](https://img.shields.io/badge/Rest%20Assured-API-orange) ![License](https://img.shields.io/badge/license-MIT-green)
+
 # JSONPlaceholder API Test Automation
 
 Automated REST API test project built with **Java**, **REST Assured**, **JUnit 5**, and **Maven**.
 
 The project uses the free [JSONPlaceholder](https://jsonplaceholder.typicode.com/) API to practise automated API testing, response validation, JSON processing, POJO serialization and deserialization, and positive and negative test scenarios.
+
+## Allure Test Report
+![Allure Report](docs/assets/img/allure_report.png)         
+
+📊 [View the Allure Report](https://nagraggini.github.io/jsonplaceholder-demo-api/)
 
 ## Technologies
 
