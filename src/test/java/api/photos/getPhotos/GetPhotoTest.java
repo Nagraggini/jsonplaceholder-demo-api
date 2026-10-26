@@ -1,18 +1,12 @@
 package api.photos.getPhotos;
 
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.anEmptyMap;
-import static org.hamcrest.Matchers.empty;
-import static org.hamcrest.Matchers.emptyString;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.not;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import base.BaseApiTest;
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
 import photoPOJO.Photo;
 
 class GetPhotoTest extends BaseApiTest {
@@ -47,31 +41,36 @@ class GetPhotoTest extends BaseApiTest {
 	 */
 	@Test
 	@DisplayName("Task 202 – Retrieve a Photo by ID")
-	void retrieveAPhotoByIDTest() {
-		int id=1;
-		int albumId=1;
-		String title="accusamus beatae ad facilis cum similique qui sunt";
+	void retrieveAPhotoByID() {
 		
-		Photo photo=
-			given()
-				.pathParam("id",id)
-			.when()
-				.get("/photos/{id}")
-			.then()
-				.log().ifValidationFails()
-				.statusCode(200)
-				.body("$", allOf(notNullValue(),not(empty())))
-				.body("url", allOf(notNullValue(),not(emptyString())))
-				.body("thumbnailUrl", allOf(notNullValue(),not(emptyString())))
-				.body("id", equalTo(id))
-				.body("albumId", equalTo(albumId))
-				.body("title", equalTo(title))
-				.extract().as(Photo.class);
-		
-		assertEquals(id,photo.getId());
-		assertEquals(albumId,photo.getAlbumId());
-		assertEquals(title,photo.getTitle());
+		int id = 1;
+
+	    Photo photo =
+	        given()
+	            .pathParam("id", id)
+	        .when()
+	            .get("/photos/{id}")
+	        .then()
+	            .log().ifValidationFails()
+	            .statusCode(200)
+	            .extract()
+	            .as(Photo.class);
+
+	    assertEquals(1, photo.getId());
+	    assertEquals(1, photo.getAlbumId());
+	    assertEquals(
+	        "accusamus beatae ad facilis cum similique qui sunt",
+	        photo.getTitle()
+	    );
+
+	    assertNotNull(photo.getUrl());
+	    assertFalse(photo.getUrl().isEmpty());
+
+	    assertNotNull(photo.getThumbnailUrl());
+	    assertFalse(photo.getThumbnailUrl().isEmpty());
 	}
+	
+	
 	
 	/**
 	 * Task 203 – Retrieve a Non-Existing Photo

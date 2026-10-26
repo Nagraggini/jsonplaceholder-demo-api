@@ -1,26 +1,5 @@
 TODO
 
-Task 204 – Filter Photos by Album ID
-
-Endpoint:
-
-GET /photos?albumId={albumId}
-
-Test data:
-
-albumId = 1
-
-Requirements:
-
-Send albumId as a query parameter.
-Verify that the status code is 200.
-Verify that the response contains exactly 50 photos.
-Verify that every returned photo has an albumId of 1.
-Verify that the first photo has an ID of 1.
-Verify that the last photo has an ID of 50.
-Verify that the photo IDs are returned in ascending order.
-Log the response only if validation fails.
-
 Task 205 – Deserialize a Filtered Photo List
 
 Endpoint:
