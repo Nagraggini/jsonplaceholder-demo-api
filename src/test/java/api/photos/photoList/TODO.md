@@ -1,45 +1,5 @@
 TODO
 
-Task 205 – Deserialize a Filtered Photo List
-
-Endpoint:
-
-GET /photos?albumId={albumId}
-
-Test data:
-
-albumId = 2
-
-Requirements:
-
-Send a GET request using albumId as a query parameter.
-Verify that the status code is 200.
-Deserialize the response into a List<Photo>.
-Use JUnit assertions to verify:
-the list is not null;
-the list contains exactly 50 photos;
-the first photo has an ID of 51;
-the last photo has an ID of 100;
-every photo has an albumId of 2;
-every title is not null and not blank.
-Log the response only if validation fails.
-Task 206 – Compare Two Equivalent Photo Endpoints
-
-Endpoints:
-
-GET /photos?albumId=3
-GET /albums/3/photos
-
-Requirements:
-
-Send a GET request to both endpoints.
-Verify that both responses have a status code of 200.
-Deserialize both responses into separate List<Photo> collections.
-Verify that both lists contain exactly 50 photos.
-Extract the photo IDs from both lists.
-Verify that the two ID lists are equal and in the same order.
-Verify that every returned photo has an albumId of 3.
-Log responses only if validation fails.
 Task 207 – Create a New Photo
 
 Endpoint:
@@ -65,6 +25,7 @@ Verify that all returned fields match the request data.
 Deserialize the response into a Photo object.
 Use JUnit assertions to verify the returned title and album ID.
 Log the response only if validation fails.
+
 Task 208 – Replace an Existing Photo
 
 Endpoint:
@@ -95,6 +56,7 @@ Verify that every returned field matches the request data.
 Deserialize the response into a Photo object.
 Use JUnit assertions to verify the ID, title, and URL.
 Log the response only if validation fails.
+
 Task 209 – Delete an Existing Photo
 
 Endpoint:
@@ -113,6 +75,7 @@ Verify that the response body is either:
 an empty JSON object, or
 completely empty.
 Log the response only if validation fails.
+
 Task 210 – Find and Delete a Photo by Title
 
 Search endpoint:
