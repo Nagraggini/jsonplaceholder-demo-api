@@ -1,24 +1,24 @@
 package api.photos.getPhotos;
 
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.anEmptyMap;
-import static org.hamcrest.Matchers.empty;
-import static org.hamcrest.Matchers.emptyString;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.not;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.Iterator;
+import java.util.List;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import base.BaseApiTest;
-import static io.restassured.RestAssured.given;
+import io.restassured.response.Response;
+
+import static io.restassured.RestAssured.*;
 import photoPOJO.Photo;
 
 class GetPhotoTest extends BaseApiTest {
 
 	/**
-	 * Task 202 – Retrieve a Photo by ID
+	 * Task 303 – Retrieve a Photo by ID
 
 	Endpoint:
 	
@@ -46,64 +46,161 @@ class GetPhotoTest extends BaseApiTest {
 	Log the response only if validation fails.
 	 */
 	@Test
-	@DisplayName("Task 202 – Retrieve a Photo by ID")
-	void retrieveAPhotoByIDTest() {
-		int id=1;
-		int albumId=1;
-		String title="accusamus beatae ad facilis cum similique qui sunt";
+	@DisplayName("Task 303 – Retrieve a Photo by ID")
+	void retrieveAPhotoByID() {
 		
-		Photo photo=
-			given()
-				.pathParam("id",id)
-			.when()
-				.get("/photos/{id}")
-			.then()
-				.log().ifValidationFails()
-				.statusCode(200)
-				.body("$", allOf(notNullValue(),not(empty())))
-				.body("url", allOf(notNullValue(),not(emptyString())))
-				.body("thumbnailUrl", allOf(notNullValue(),not(emptyString())))
-				.body("id", equalTo(id))
-				.body("albumId", equalTo(albumId))
-				.body("title", equalTo(title))
-				.extract().as(Photo.class);
-		
-		assertEquals(id,photo.getId());
-		assertEquals(albumId,photo.getAlbumId());
-		assertEquals(title,photo.getTitle());
+		int id = 1;
+
+	    Photo photo =
+	        given()
+	            .pathParam("id", id)
+	        .when()
+	            .get("/photos/{id}")
+	        .then()
+	            .log().ifValidationFails()
+	            .statusCode(200)
+	            .extract()
+	            .as(Photo.class);
+
+	    assertEquals(1, photo.getId());
+	    assertEquals(1, photo.getAlbumId());
+	    assertEquals(
+	        "accusamus beatae ad facilis cum similique qui sunt",
+	        photo.getTitle()
+	    );
+
+	    assertNotNull(photo.getUrl());
+	    assertFalse(photo.getUrl().isEmpty());
+
+	    assertNotNull(photo.getThumbnailUrl());
+	    assertFalse(photo.getThumbnailUrl().isEmpty());
 	}
 	
-	/**
-	 * Task 203 – Retrieve a Non-Existing Photo
 	
+	
+	
+	
+	/**
+	 * Task 304 – Deserialize a Filtered Photo List
+
 	Endpoint:
 	
-	GET /photos/{id}
+	GET /photos?albumId={albumId}
 	
 	Test data:
 	
-	id = 99999
+	albumId = 2
 	
 	Requirements:
 	
-	Send a GET request using the non-existing photo ID.
-	Verify that the status code is 404.
-	Verify that the response body is an empty JSON object.
+	Send a GET request using albumId as a query parameter.
+	Verify that the status code is 200.
+	Deserialize the response into a List<Photo>.
+	Use JUnit assertions to verify:
+	the list is not null;
+	the list contains exactly 50 photos;
+	the first photo has an ID of 51;
+	the last photo has an ID of 100;
+	every photo has an albumId of 2;
+	every title is not null and not blank.
 	Log the response only if validation fails.
 	 */
 	@Test
-	@DisplayName("Task 203 – Retrieve a Non-Existing Photo")
-	void retrieveANonExistingPhotoTest() {
-		int id=99999;
+	@DisplayName("Task 304 – Deserialize a Filtered Photo List")
+	void deserializeAFilteredPhotoList() {
+		int albumId = 2;
 		
-		given()
-			.pathParam("id",id)
+		Response response=
+				given()
+			.queryParam("albumId",albumId)
 		.when()
-			.get("/photos/{id}")
+			.get("/photos")
 		.then()
 			.log().ifValidationFails()
-			.statusCode(404)
-			.body("$", anEmptyMap());		
+			.statusCode(200).extract().response();
+		
+		List<Photo>photos=response	
+			.jsonPath().getList("",Photo.class);
+		
+		assertNotNull(photos);
+		assertEquals(50, photos.size());
+		assertEquals(51, photos.get(0).getId());
+		assertEquals(100, photos.get(photos.size() - 1).getId());
+		
+		for (Photo photo : photos) {
+			assertEquals(albumId,photo.getAlbumId());
+			assertNotNull(photo.getTitle());
+			assertFalse(photo.getTitle().isBlank());
+		}			
 	}
 
+	/**
+	 * Task 305 – Compare Two Equivalent Photo Endpoints
+	
+	Endpoints:
+	
+	GET /photos?albumId=3
+	GET /albums/3/photos
+	
+	Requirements:
+	
+	Send a GET request to both endpoints.
+	Verify that both responses have a status code of 200.
+	Deserialize both responses into separate List<Photo> collections.
+	Verify that both lists contain exactly 50 photos.
+	Extract the photo IDs from both lists.
+	Verify that the two ID lists are equal and in the same order.
+	Verify that every returned photo has an albumId of 3.
+	Log responses only if validation fails.
+	 */
+	@Test
+	@DisplayName("Task 305 – Compare Two Equivalent Photo Endpoints")
+	void compareTwoEquivalentPhotoEndpoints() {
+		int albumId=3;
+		
+		Response responseQueryParam= 
+				given()
+					.queryParam("albumId",albumId)
+				.when()
+					.get("photos")
+				.then()
+					.log().ifValidationFails()
+					.statusCode(200).extract().response();
+		
+		Response responsePathParam= 
+				given()
+					.pathParam("albumId",albumId)
+				.when()
+					.get("/albums/{albumId}/photos")
+				.then()
+					.log().ifValidationFails()
+					.statusCode(200).extract().response();
+		
+		List <Photo> photosQueryParam=responseQueryParam.jsonPath().getList("",Photo.class);
+		List <Photo> photosPathParam=responsePathParam.jsonPath().getList("",Photo.class);
+		
+		try {
+			assertEquals(50, photosQueryParam.size());
+			assertEquals(50, photosPathParam.size());
+			
+			List <Integer> photoIdsQueryParam=responseQueryParam.jsonPath().getList("id",Integer.class);
+			List <Integer> photoIdsPathParam=responsePathParam.jsonPath().getList("id",Integer.class);
+			
+			assertEquals(photoIdsQueryParam, photoIdsPathParam);
+			
+			for (Photo photo : photosQueryParam) {
+			    assertEquals(3, photo.getAlbumId());
+			}
+	
+			for (Photo photo : photosPathParam) {
+			    assertEquals(3, photo.getAlbumId());	
+			}
+			
+		} catch (AssertionError e) {
+		    responseQueryParam.then().log().all();
+		    responsePathParam.then().log().all();
+		    throw e;
+		}
+		
+	}
 }

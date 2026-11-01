@@ -45,6 +45,20 @@ The automated test results and execution reports are generated and published aut
 - Retrieve individual photo details and photo lists.
 - Validate photo metadata (`albumId`, `title`, `url`, `thumbnailUrl`).
 
+### Todos (`/todos`)
+
+- Retrieve all todos and validate response structures.
+- Retrieve individual todos by ID (Positive & Negative 404 cases).
+- Filter todos by `userId` and completion status (`completed`).
+- Create new todos (`POST`) and validate response data.
+- Update existing todos (`PUT`) and partially update them (`PATCH`).
+- Delete todos (`DELETE`).
+- Verify todo fields (`userId`, `id`, `title`, `completed`).
+
+**Note:** JSONPlaceholder only simulates POST, PUT, and DELETE operations. Changes are not permanently saved on the server.
+
+[JSONPlaceholder Guide](https://jsonplaceholder.typicode.com/guide/)
+
 ---
 
 ## Project Structure

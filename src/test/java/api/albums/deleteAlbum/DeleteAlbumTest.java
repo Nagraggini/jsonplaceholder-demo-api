@@ -15,7 +15,7 @@ import static org.hamcrest.Matchers.*;
 class DeleteAlbumTest extends BaseApiTest{
 
 	/**
-	 * Task 10 – Delete an Existing Album
+	 * Task 110 – Delete an Existing Album
 
 	Precondition:
 	
@@ -33,7 +33,7 @@ class DeleteAlbumTest extends BaseApiTest{
 	Log the response only if validation fails.
 	 */
 	@Test
-	@DisplayName("Task 10 – Delete an Existing Album")
+	@DisplayName("Task 110 – Delete an Existing Album")
 	void deleteAnExistingAlbumTest() {
 		given()
 		.when()
@@ -45,7 +45,7 @@ class DeleteAlbumTest extends BaseApiTest{
 	}
 	
 	/**
-	 * Task 11 – Delete an Existing Album by Title
+	 * Task 111 – Delete an Existing Album by Title
 	 *
 	 * Precondition:
 	 *
@@ -68,7 +68,7 @@ class DeleteAlbumTest extends BaseApiTest{
 	 * Log responses only if validation fails.
 	 */
 	@Test
-	@DisplayName("Task 11 – Delete an Existing Album by Title")
+	@DisplayName("Task 111 – Delete an Existing Album by Title")
 	void deleteAnExistingAlbumByTitleTest() {		
 		Album album=new Album();
 		album.setTitle("quidem molestiae enim");
