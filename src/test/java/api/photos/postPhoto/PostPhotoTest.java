@@ -13,7 +13,7 @@ import photoPOJO.Photo;
 class PostPhotoTest extends BaseApiTest {
 
 	/**
-	 * Task 207 – Create a New Photo
+	 * Task 307 – Create a New Photo
 	 
 	 Endpoint:
 	 
@@ -35,7 +35,7 @@ class PostPhotoTest extends BaseApiTest {
 	 if validation fails.
 	 */
 	@Test
-	@DisplayName("Task 207 – Create a New Photo")
+	@DisplayName("Task 307 – Create a New Photo")
 	void createANewPhotoTest() {
 
 		int albumId = 10;

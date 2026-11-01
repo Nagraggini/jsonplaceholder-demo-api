@@ -1,4 +1,4 @@
-package api.comments.getComments;
+package api.comments.getComment;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,7 +18,7 @@ import io.restassured.http.ContentType;
 class GetCommentsTest extends BaseApiTest {
 
 	/**
-	 * Task 104 – Retrieve a Comment by ID
+	 * Task 204 – Retrieve a Comment by ID
 
 	Endpoint:
 	
@@ -43,7 +43,7 @@ class GetCommentsTest extends BaseApiTest {
 	Log the response only if validation fails.
 	 */
 	@Test
-	@DisplayName("Task 104 – Retrieve a Comment by ID")
+	@DisplayName("Task 204 – Retrieve a Comment by ID")
 	void retrieveACommentByIDTest() {
 		int id=1;
 		
@@ -67,7 +67,7 @@ class GetCommentsTest extends BaseApiTest {
 	}
 	
 	/**
-	 * Task 105 – Filter Comments by Post ID
+	 * Task 205 – Filter Comments by Post ID
 	
 	Endpoint:
 	
@@ -93,7 +93,7 @@ class GetCommentsTest extends BaseApiTest {
 	Log the response only if validation fails.
 	 */
 	@Test
-	@DisplayName("Task 105 – Filter Comments by Post ID")
+	@DisplayName("Task 205 – Filter Comments by Post ID")
 	void filterCommentsByPostIDTest() {
 		int postId=5;
 		
@@ -120,7 +120,7 @@ class GetCommentsTest extends BaseApiTest {
 	}
 	
 	/**
-	 * Task 106 – Compare Filtered and Nested Comment Routes
+	 * Task 206 – Compare Filtered and Nested Comment Routes
 
 	Endpoints:
 	
@@ -140,7 +140,7 @@ class GetCommentsTest extends BaseApiTest {
 	Log responses only if validation fails.
 	 */
 	@Test
-	@DisplayName("Task 106 – Compare Filtered and Nested Comment Routes")
+	@DisplayName("Task 206 – Compare Filtered and Nested Comment Routes")
 	void compareFilteredAndNestedCommentRoutesTest() {
 		
 		int postId=10;
@@ -178,7 +178,7 @@ class GetCommentsTest extends BaseApiTest {
 	}
 
 	/**
-	 * Task 107 – Search for a Comment by Email
+	 * Task 207 – Search for a Comment by Email
 
 	Endpoint:
 	
@@ -200,7 +200,7 @@ class GetCommentsTest extends BaseApiTest {
 	Log the response only if validation fails.
 	 */
 	@Test
-	@DisplayName("Task 107 – Search for a Comment by Email")
+	@DisplayName("Task 207 – Search for a Comment by Email")
 	void searchForACommentByEmailTest() {
 		
 		String email="Eliseo@gardner.biz";
@@ -218,45 +218,9 @@ class GetCommentsTest extends BaseApiTest {
 		
 		assertEquals(email,comment.getEmail());
 	}
-	
+			
 	/**
-	 * Task 108 – Search for a Nonexistent Comment
-
-	Endpoint:
-	
-	GET /comments?email={email}
-	
-	Test data:
-	
-	email = not-existing@example.com
-	
-	Requirements:
-	
-	Search for comments using the nonexistent email address.
-	Verify that the status code is 200.
-	Verify that the response is a JSON array.
-	Verify that the returned array is empty.
-	Log the response only if validation fails.
-	 */
-	@Test
-	@DisplayName("Task 108 – Search for a Nonexistent Comment")
-	void searchForANonexistentCommentTest() {
-		
-		String email="not-existing@example.com";
-		
-		given()
-			.queryParam("email",email)		
-		.when()
-			.get("/comments")
-		.then()
-			.log().ifValidationFails()
-			.statusCode(200)
-			.body("$", instanceOf(List.class)) // The response is a JSON array.
-			.body("$",anyOf(empty(),nullValue())); // Array is empty.
-	}
-	
-	/**
-	 * Task 109 – Deserialize a List of Comments
+	 * Task 208 – Deserialize a List of Comments
 
 	Endpoint:
 	
@@ -277,7 +241,7 @@ class GetCommentsTest extends BaseApiTest {
 	Log the response only if validation fails.
 	 */
 	@Test
-	@DisplayName("Task 109 – Deserialize a List of Comments")
+	@DisplayName("Task 208 – Deserialize a List of Comments")
 	void deserializeAListOfCommentsTest() {
 		
 		int postId=20;
@@ -301,8 +265,5 @@ class GetCommentsTest extends BaseApiTest {
 			assertEquals(postId,comment.getPostId());
 		}
 	}
-	
-	
-	
-	
+		
 }

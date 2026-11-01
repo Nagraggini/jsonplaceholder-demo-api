@@ -19,7 +19,7 @@ import io.restassured.http.ContentType;
 class CommentListTest extends BaseApiTest{
 
 	/**
-	 * Task 101 – Retrieve All Comments
+	 * Task 201 – Retrieve All Comments
 
 	Endpoint:	
 	GET /comments
@@ -34,7 +34,7 @@ class CommentListTest extends BaseApiTest{
 	Log the response only if validation fails.
 	 */
 	@Test
-	@DisplayName("Task 101 – Retrieve All Comments")
+	@DisplayName("Task 201 – Retrieve All Comments")
 	void retrieveAllCommentsTest() {
 		given()
 			.accept(ContentType.JSON) // Also include BaseApiTest class.
@@ -50,7 +50,7 @@ class CommentListTest extends BaseApiTest{
 	}
 	
 	/**
-	 * Task 102 – Verify the Structure of Every Comment
+	 * Task 202 – Verify the Structure of Every Comment
 	
 	Endpoint:
 	
@@ -70,7 +70,7 @@ class CommentListTest extends BaseApiTest{
 	Log the response only if validation fails.
 	 */
 	@Test
-	@DisplayName("Task 102 – Verify the Structure of Every Comment")
+	@DisplayName("Task 202 – Verify the Structure of Every Comment")
 	void verifyTheStructureOfEveryCommentTest() {
 		given()
 		.when()
@@ -89,7 +89,7 @@ class CommentListTest extends BaseApiTest{
 	}
 	
 	/**
-	 * Task 103 – Verify That Required Fields Contain Valid Values
+	 * Task 203 – Verify That Required Fields Contain Valid Values
 
 	Endpoint:
 	
@@ -107,7 +107,7 @@ class CommentListTest extends BaseApiTest{
 	Log the response only if validation fails.
 	 */
 	@Test
-	@DisplayName("Task 103 – Verify That Required Fields Contain Valid Values")
+	@DisplayName("Task 203 – Verify That Required Fields Contain Valid Values")
 	void verifyThatRequiredFieldsContainValidValues() {
 		given()
 		.when()

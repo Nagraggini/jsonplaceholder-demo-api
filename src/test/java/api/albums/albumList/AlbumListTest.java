@@ -23,7 +23,7 @@ import base.BaseApiTest;
 class AlbumListTest extends BaseApiTest{
 
 	/**
-	 * Task 1 – Get and Search for One Album
+	 * Task 101 – Get and Search for One Album
 
 	Endpoint:
 	
@@ -38,7 +38,7 @@ class AlbumListTest extends BaseApiTest{
 	contains exactly 100 albums.
 	 */
 	@Test
-	@DisplayName("Task 1 – Get album list")
+	@DisplayName("Task 101 – Get album list")
 	void getAlbumList() {
 		List<Album> albums=
 			given()
@@ -60,10 +60,10 @@ class AlbumListTest extends BaseApiTest{
 	}
 	
 	/**
-	 * Task 2 – List contains userId, id, and title fields.
+	 * Task 102 – List contains userId, id, and title fields.
 	 */
 	@Test
-	@DisplayName("Task 2 – List contains userId, id, and title fields.")
+	@DisplayName("Task 102 – List contains userId, id, and title fields.")
 	void albumListContainsSpecificFields() {
 					given()
 					.when()

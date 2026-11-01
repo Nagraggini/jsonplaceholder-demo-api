@@ -12,7 +12,7 @@ import base.BaseApiTest;
 class PatchCommentTest extends BaseApiTest {
 
 	/**
-	 * Task 112 – Partially Update an Existing Comment
+	 * Task 212 – Partially Update an Existing Comment
 
 	Endpoint:
 	
@@ -38,7 +38,7 @@ class PatchCommentTest extends BaseApiTest {
 	Log the response only if validation fails.
 	 */
 	@Test
-	@DisplayName("Task 112 – Partially Update an Existing Comment")
+	@DisplayName("Task 212 – Partially Update an Existing Comment")
 	void partiallyUpdateAnExistingCommentTest() {
 		int id=10;
 		String email="patched@test.com";

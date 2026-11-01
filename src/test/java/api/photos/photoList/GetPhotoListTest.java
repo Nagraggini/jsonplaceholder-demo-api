@@ -23,7 +23,7 @@ import io.restassured.http.ContentType;
 class GetPhotoListTest extends BaseApiTest {
 
 	/**
-	 * Task 201 – Retrieve All Photos
+	 * Task 301 – Retrieve All Photos
 	  
 	 Endpoint:
 	 
@@ -38,7 +38,7 @@ class GetPhotoListTest extends BaseApiTest {
 	 response only if validation fails.
 	 */
 	@Test
-	@DisplayName("Task 201 – Retrieve All Photos")
+	@DisplayName("Task 301 – Retrieve All Photos")
 	void retrieveAllPhotosTest() {
 		given().accept(ContentType.JSON) // Also include in BaseApiTest class.
 				.when().get("/photos").then().log().ifValidationFails().statusCode(200)
@@ -48,7 +48,7 @@ class GetPhotoListTest extends BaseApiTest {
 	}
 
 	/**
-	 * Task 204 – Filter Photos by Album ID
+	 * Task 302 – Filter Photos by Album ID
 	 * 
 	 * Endpoint:
 	 * 
@@ -67,7 +67,7 @@ class GetPhotoListTest extends BaseApiTest {
 	 * in ascending order. Log the response only if validation fails.
 	 */
 	@Test
-	@DisplayName("Task 204 – Filter Photos by Album ID")
+	@DisplayName("Task 302 – Filter Photos by Album ID")
 	void filterPhotosByAlbumIDTest() {
 		int albumId = 1;
 

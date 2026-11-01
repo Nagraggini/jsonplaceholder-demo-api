@@ -15,7 +15,8 @@ import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
 class DeletePhotoTest extends BaseApiTest {
-	/**
+	
+  /**
  	* Task 309 – Delete an Existing Photo
 	
 	Endpoint:
