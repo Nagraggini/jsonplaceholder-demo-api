@@ -40,14 +40,10 @@ class GetPhotoListTest extends BaseApiTest {
 	@Test
 	@DisplayName("Task 201 – Retrieve All Photos")
 	void retrieveAllPhotosTest() {
-		given()
-			.accept(ContentType.JSON) // Also include in BaseApiTest class.
-		.when().get("/photos")
-		.then()
-			.log().ifValidationFails().statusCode(200)
-			.body("$", instanceOf(List.class))
-			.body("$", allOf(notNullValue(), not(empty())))
-			.body("$.size()", equalTo(5000)).body("$", everyItem(allOf(hasKey("albumId"), hasKey("id"),
+		given().accept(ContentType.JSON) // Also include in BaseApiTest class.
+				.when().get("/photos").then().log().ifValidationFails().statusCode(200)
+				.body("$", instanceOf(List.class)).body("$", allOf(notNullValue(), not(empty())))
+				.body("$.size()", equalTo(5000)).body("$", everyItem(allOf(hasKey("albumId"), hasKey("id"),
 						hasKey("title"), hasKey("url"), hasKey("thumbnailUrl"))));
 	}
 
