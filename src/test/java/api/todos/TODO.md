@@ -15,7 +15,7 @@ Expected JSON structure:
 
 
 
-Task 301 – Retrieve All Todos
+Task 401 – Retrieve All Todos
 Endpoint:
 
 GET /todos
@@ -33,7 +33,7 @@ Requirements:
 - Verify that the completed field contains a boolean value.
 - Log the response only if validation fails.
 
-Task 302 – Retrieve a Todo by ID
+Task 402 – Retrieve a Todo by ID
 Endpoint:
 
 GET /todos/{id}
@@ -63,7 +63,7 @@ Requirements:
 - Use JUnit assertions to validate the ID, title, and completion status.
 - Log the response only if validation fails.
 
-Task 303 – Retrieve a Non-Existing Todo
+Task 403 – Retrieve a Non-Existing Todo
 Endpoint:
 
 GET /todos/{id}
@@ -79,14 +79,14 @@ Requirements:
 - Verify that the response does not contain todo data.
 - Log the response only if validation fails.
 
-Task 304 – Filter Todos by User ID
+Task 404 – Filter Todos by User ID
 Endpoint:
 
 GET /todos?userId={userId}
 
 Test data:
 
-userId = 3
+userId = 4
 
 Requirements:
 - Send a GET request using userId as a query parameter.
@@ -94,13 +94,13 @@ Requirements:
 - Verify that the response body is not empty.
 - Deserialize the response into a List<Todo>.
 - Verify that the list is not empty.
-- Verify that every returned todo has userId = 3.
+- Verify that every returned todo has userId = 4.
 - Verify that every todo has a valid ID greater than 0.
 - Verify that every todo has a non-null title.
 - Verify that the response contains only todos belonging to the requested user.
 - Log the response only if validation fails.
 
-Task 305 – Filter Todos by Completion Status
+Task 405 – Filter Todos by Completion Status
 Endpoint:
 
 GET /todos?completed={completed}
@@ -121,7 +121,7 @@ Requirements:
 - Verify that no incomplete todos are returned.
 - Log the response only if validation fails.
 
-Task 306 – Filter Todos by User ID and Completion Status
+Task 406 – Filter Todos by User ID and Completion Status
 Endpoint:
 
 GET /todos?userId={userId}&completed={completed}
@@ -141,7 +141,7 @@ Requirements:
 - Verify that every todo has a non-null title.
 - Log the response only if validation fails.
 
-Task 307 – Create a New Todo
+Task 407 – Create a New Todo
 Endpoint:
 
 POST /todos
@@ -165,7 +165,7 @@ Requirements:
 - Use JUnit assertions to verify the generated ID, user ID, title, and completion status.
 - Log the response only if validation fails.
 
-Task 308 – Replace an Existing Todo
+Task 408 – Replace an Existing Todo
 Endpoint:
 
 PUT /todos/{id}
@@ -194,7 +194,7 @@ Requirements:
 - Use JUnit assertions to verify the ID, user ID, title, and completion status.
 - Log the response only if validation fails.
 
-Task 309 – Partially Update an Existing Todo
+Task 409 – Partially Update an Existing Todo
 Endpoint:
 
 PATCH /todos/{id}
@@ -221,7 +221,7 @@ Requirements:
 - Use JUnit assertions to validate the ID and completion status.
 - Log the response only if validation fails.
 
-Task 310 – Update the Title of an Existing Todo
+Task 410 – Update the Title of an Existing Todo
 Endpoint:
 
 PATCH /todos/{id}
@@ -248,7 +248,7 @@ Requirements:
 - Use JUnit assertions to validate the ID and title.
 - Log the response only if validation fails.
 
-Task 311 – Delete an Existing Todo
+Task 411 – Delete an Existing Todo
 Endpoint:
 
 DELETE /todos/{id}
@@ -265,7 +265,7 @@ Requirements:
   - completely empty.
 - Log the response only if validation fails.
 
-Task 312 – Find and Delete a Todo by Title
+Task 412 – Find and Delete a Todo by Title
 Search endpoint:
 
 GET /todos?title={title}

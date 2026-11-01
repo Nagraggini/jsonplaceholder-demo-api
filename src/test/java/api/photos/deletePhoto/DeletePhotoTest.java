@@ -2,13 +2,23 @@ package api.photos.deletePhoto;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class DeletePhotoTest {
+import base.BaseApiTest;
+import io.restassured.response.Response;
+import photoPOJO.Photo;
 
-	/**
-	 * Task 309 – Delete an Existing Photo
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
 
+class DeletePhotoTest extends BaseApiTest {
+	
+  /**
+ 	* Task 309 – Delete an Existing Photo
+	
 	Endpoint:
 	
 	DELETE /photos/{id}
@@ -25,8 +35,25 @@ class DeletePhotoTest {
 	an empty JSON object, or
 	completely empty.
 	Log the response only if validation fails.
+	*/
+	@Test
+	@DisplayName("Task 309 – Delete an Existing Photo")
+	void deleteAnExistingPhotoTest() {
+		
+		int id=250;
+		
+		given()	
+			.pathParam("id",id)
+		.when()
+			.delete("/photos/{id}")
+		.then()
+			.log().ifValidationFails()
+			.statusCode(anyOf(is(200),is(204)))
+			.body("",anyOf(anEmptyMap(),nullValue(),empty()));
+	}
 	
-	Task 210 – Find and Delete a Photo by Title
+	/**
+	 * Task 310 – Find and Delete a Photo by Title
 	
 	Search endpoint:
 	
@@ -54,8 +81,43 @@ class DeletePhotoTest {
 	Log responses only if validation fails.
 	 */
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	@DisplayName("Task 310 – Find and Delete a Photo by Title")
+	void findAndDeleteAPhotoByTitleTest() {
+		
+		String title = "et inventore quae ut tempore eius voluptatum";
+		
+		List <Photo> photoResponse=given()
+			.queryParam("title",title)
+		.when()
+			.get("/photos")
+		.then()
+			.log().ifValidationFails()
+			.statusCode(200)
+			.extract().jsonPath().getList("",Photo.class);
+		
+		assertNotNull(photoResponse);
+		assertFalse(photoResponse.isEmpty());
+		
+		for (Photo photo : photoResponse) {
+			assertEquals(title,photo.getTitle());
+		}
+		
+		int id=photoResponse.get(0).getId();
+		System.out.println("Photo ID to delete: " + id);
+		
+		Response responseAfterDelete=given()
+			.pathParam("id",id)
+		.when()
+			.delete("/photos/{id}")
+		.then()
+			.log().ifValidationFails()		    
+			.statusCode(anyOf(is(200),is(204)))
+			.extract().response();
+		
+		String responseBody=responseAfterDelete.getBody().asString();
+		
+		assertTrue(responseBody.trim().isEmpty() || responseBody.trim().equals("{}"));
+			
 	}
 
 }
