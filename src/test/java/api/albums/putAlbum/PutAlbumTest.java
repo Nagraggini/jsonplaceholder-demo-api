@@ -15,7 +15,7 @@ import static io.restassured.RestAssured.*;
 class PutAlbumTest extends BaseApiTest {
 
 	/**
-	 * Task 9 – Update an Existing Album
+	 * Task 109 – Update an Existing Album
 	
 	Endpoint:
 	
@@ -43,7 +43,7 @@ class PutAlbumTest extends BaseApiTest {
 	Log the response only if validation fails.
 	 */
 	@Test
-	@DisplayName("Task 9 – Update an Existing Album")
+	@DisplayName("Task 109 – Update an Existing Album")
 	void updateAnExistingAlbum() {
 		Album album=new Album();
 		

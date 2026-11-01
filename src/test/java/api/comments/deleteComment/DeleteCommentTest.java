@@ -19,7 +19,7 @@ import static io.restassured.RestAssured.given;
 class DeleteCommentTest extends BaseApiTest {
 
 	/**
-	 * Task 113 – Delete a Comment Found by Email
+	 * Task 213 – Delete a Comment Found by Email
 	 * 
 	 * Endpoints:
 	 * 
@@ -43,7 +43,7 @@ class DeleteCommentTest extends BaseApiTest {
 	 * Log the responses only if validation fails.
 	 */
 	@Test
-	@DisplayName("Task 113 – Delete a Comment Found by Email")
+	@DisplayName("Task 213 – Delete a Comment Found by Email")
 	void deleteACommentFoundByEmailTest() {
 
 		String email = "Eliseo@gardner.biz";

@@ -13,7 +13,7 @@ import commentPOJO.Comment;
 class PostCommentTest extends BaseApiTest{
 
 	/**
-	 * Task 110 – Create a New Comment Using a POJO
+	 * Task 210 – Create a New Comment Using a POJO
 
 	Endpoint:
 	
@@ -40,7 +40,7 @@ class PostCommentTest extends BaseApiTest{
 	Log the response only if validation fails.
 	 */
 	@Test
-	@DisplayName("Task 110 – Create a New Comment Using a POJO")
+	@DisplayName("Task 210 – Create a New Comment Using a POJO")
 	void createANewCommentUsingAPOJOTest() {
 		int postId = 1;
 		String name = "REST Assured practice comment";
@@ -68,8 +68,7 @@ class PostCommentTest extends BaseApiTest{
 			            .extract()
 			            .as(Comment.class);
 
-		assertTrue(responseComment.getId() > 0);
-	
+		assertTrue(responseComment.getId() > 0);	
 	}
 
 }

@@ -17,7 +17,7 @@ import static io.restassured.RestAssured.given;
 class GetAlbumTest extends BaseApiTest {
 
 	/**
-	 * Task 3 – Get and Search for One Album
+	 * Task 103 – Get and Search for One Album
 	 * 
 	 * Endpoint:
 	 * 
@@ -32,7 +32,7 @@ class GetAlbumTest extends BaseApiTest {
 	 * title: vero maxime id possimus sunt neque et consequatur
 	 */
 	@Test
-	@DisplayName("Task 3 – Get and Search for One Album")
+	@DisplayName("Task 103 – Get and Search for One Album")
 	void getAndSearchForOneAlbumTest() {
 		Album album = given()
 				.when()
@@ -48,7 +48,7 @@ class GetAlbumTest extends BaseApiTest {
 	}
 
 	@Test
-	@DisplayName("Task 3 – 2.Solution for Get and Search for One Album")
+	@DisplayName("Task 103 – 2.Solution for Get and Search for One Album")
 	void getAndSearchForOneAlbumTest2() {
 		Album album = given()
 				.when()
@@ -69,7 +69,7 @@ class GetAlbumTest extends BaseApiTest {
 	}
 
 	/**
-	 * Task 4 – Filter Albums by User ID
+	 * Task 104 – Filter Albums by User ID
 	 * 
 	 * Endpoint:
 	 * 
@@ -83,7 +83,7 @@ class GetAlbumTest extends BaseApiTest {
 	 * Verify that every album in the filtered list has userId = 7.
 	 */
 	@Test
-	@DisplayName("Task 4 – Filter Albums by User ID")
+	@DisplayName("Task 104 – Filter Albums by User ID")
 	void filterAlbumsByUserIDTest() {
 		given()
 				.queryParam("userId", 7) // Filtering

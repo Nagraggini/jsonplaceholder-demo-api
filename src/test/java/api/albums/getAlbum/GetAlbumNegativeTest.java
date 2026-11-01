@@ -15,7 +15,7 @@ import base.BaseApiTest;
 class GetAlbumNegativeTest extends BaseApiTest{
 
 	/**
-	 * Task 5 – Get a Non-Existing Album
+	 * Task 105 – Get a Non-Existing Album
 
 	Endpoint:
 	
@@ -29,7 +29,7 @@ class GetAlbumNegativeTest extends BaseApiTest{
 	Log the response only if validation fails.
 	 */
 	@Test
-	@DisplayName("Task 5 – Get a Non-Existing Album")
+	@DisplayName("Task 105 – Get a Non-Existing Album")
 	void getANonExistingAlbumTest() {
 		given()
 		.when().get("/albums/999")
@@ -39,7 +39,7 @@ class GetAlbumNegativeTest extends BaseApiTest{
 	}
 	
 	/**
-	 * Task 6 – Filter Albums by a Non-Existing User ID
+	 * Task 106 – Filter Albums by a Non-Existing User ID
 
 	Endpoint:
 	
@@ -55,7 +55,7 @@ class GetAlbumNegativeTest extends BaseApiTest{
 	Log the response only if validation fails.
 	 */
 	@Test
-	@DisplayName("Task 6 – Filter Albums by a Non-Existing User ID")
+	@DisplayName("Task 106 – Filter Albums by a Non-Existing User ID")
 	void filterAlbumsByANonExistingUserIDTest()	{
 		given()
 			.queryParam("userId",999)

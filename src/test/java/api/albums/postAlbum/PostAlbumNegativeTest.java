@@ -13,7 +13,7 @@ import io.restassured.http.ContentType;
 class PostAlbumNegativeTest extends BaseApiTest {
 
 	/**
-	 * Task 8 – Create an Album Using an Invalid Endpoint
+	 * Task 108 – Create an Album Using an Invalid Endpoint
 	
 	Endpoint:
 	
@@ -35,7 +35,7 @@ class PostAlbumNegativeTest extends BaseApiTest {
 	Log the response only if validation fails.
 	 */
 	@Test
-	@DisplayName("Task 8 – Create an Album Using an Invalid Endpoint")
+	@DisplayName("Task 108 – Create an Album Using an Invalid Endpoint")
 	void createAnAlbumUsingAnInvalidEndpoint() {
 		
 		Album album=new Album();

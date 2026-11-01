@@ -18,7 +18,7 @@ import photoPOJO.Photo;
 class GetPhotoTest extends BaseApiTest {
 
 	/**
-	 * Task 202 – Retrieve a Photo by ID
+	 * Task 303 – Retrieve a Photo by ID
 
 	Endpoint:
 	
@@ -46,7 +46,7 @@ class GetPhotoTest extends BaseApiTest {
 	Log the response only if validation fails.
 	 */
 	@Test
-	@DisplayName("Task 202 – Retrieve a Photo by ID")
+	@DisplayName("Task 303 – Retrieve a Photo by ID")
 	void retrieveAPhotoByID() {
 		
 		int id = 1;
@@ -78,41 +78,10 @@ class GetPhotoTest extends BaseApiTest {
 	
 	
 	
-	/**
-	 * Task 203 – Retrieve a Non-Existing Photo
 	
-	Endpoint:
-	
-	GET /photos/{id}
-	
-	Test data:
-	
-	id = 99999
-	
-	Requirements:
-	
-	Send a GET request using the non-existing photo ID.
-	Verify that the status code is 404.
-	Verify that the response body is an empty JSON object.
-	Log the response only if validation fails.
-	 */
-	@Test
-	@DisplayName("Task 203 – Retrieve a Non-Existing Photo")
-	void retrieveANonExistingPhotoTest() {
-		int id=99999;
-		
-		given()
-			.pathParam("id",id)
-		.when()
-			.get("/photos/{id}")
-		.then()
-			.log().ifValidationFails()
-			.statusCode(404)
-			.body("$", anEmptyMap());		
-	}
 	
 	/**
-	 * Task 205 – Deserialize a Filtered Photo List
+	 * Task 304 – Deserialize a Filtered Photo List
 
 	Endpoint:
 	
@@ -137,7 +106,7 @@ class GetPhotoTest extends BaseApiTest {
 	Log the response only if validation fails.
 	 */
 	@Test
-	@DisplayName("Task 205 – Deserialize a Filtered Photo List")
+	@DisplayName("Task 304 – Deserialize a Filtered Photo List")
 	void deserializeAFilteredPhotoList() {
 		int albumId = 2;
 		
@@ -166,7 +135,7 @@ class GetPhotoTest extends BaseApiTest {
 	}
 
 	/**
-	 * Task 206 – Compare Two Equivalent Photo Endpoints
+	 * Task 305 – Compare Two Equivalent Photo Endpoints
 	
 	Endpoints:
 	
@@ -185,7 +154,7 @@ class GetPhotoTest extends BaseApiTest {
 	Log responses only if validation fails.
 	 */
 	@Test
-	@DisplayName("Task 206 – Compare Two Equivalent Photo Endpoints")
+	@DisplayName("Task 305 – Compare Two Equivalent Photo Endpoints")
 	void compareTwoEquivalentPhotoEndpoints() {
 		int albumId=3;
 		

@@ -15,7 +15,7 @@ import io.restassured.response.Response;
 class PostAlbumTest extends BaseApiTest {
 
 	/**
-	 * Task 7 – Create a New Album
+	 * Task 107 – Create a New Album
 
 	Endpoint:
 	
@@ -41,7 +41,7 @@ class PostAlbumTest extends BaseApiTest {
 	Log the response only if validation fails.
 	 */
 	@Test
-	@DisplayName("Task 7 – Create a New Album")
+	@DisplayName("Task 107 – Create a New Album")
 	void createANewAlbumTest() {
 		
 	Album album=new Album();
