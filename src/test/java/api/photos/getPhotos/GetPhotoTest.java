@@ -189,21 +189,23 @@ class GetPhotoTest extends BaseApiTest {
 	void compareTwoEquivalentPhotoEndpoints() {
 		int albumId=3;
 		
-		Response responseQueryParam= given()
-				.queryParam("albumId",albumId)
+		Response responseQueryParam= 
+				given()
+					.queryParam("albumId",albumId)
 				.when()
 					.get("photos")
 				.then()
-				.log().ifValidationFails()
-				.statusCode(200).extract().response();
+					.log().ifValidationFails()
+					.statusCode(200).extract().response();
 		
-		Response responsePathParam= given()
-				.pathParam("albumId",albumId)
+		Response responsePathParam= 
+				given()
+					.pathParam("albumId",albumId)
 				.when()
 					.get("/albums/{albumId}/photos")
 				.then()
-				.log().ifValidationFails()
-				.statusCode(200).extract().response();
+					.log().ifValidationFails()
+					.statusCode(200).extract().response();
 		
 		List <Photo> photosQueryParam=responseQueryParam.jsonPath().getList("",Photo.class);
 		List <Photo> photosPathParam=responsePathParam.jsonPath().getList("",Photo.class);
