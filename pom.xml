@@ -35,6 +35,14 @@
             <scope>test</scope>
         </dependency>
         
+        <!-- JSON Schema validation-->
+		<dependency>
+		    <groupId>io.rest-assured</groupId>
+		    <artifactId>json-schema-validator</artifactId>
+		    <version>5.5.0</version>
+		    <scope>test</scope>
+		</dependency>
+         
         <!-- Log4j -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>

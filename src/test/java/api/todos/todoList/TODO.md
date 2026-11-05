@@ -1,69 +1,6 @@
 TODO
 
-Todos API – Test Tasks
-Base endpoint: https://jsonplaceholder.typicode.com
-
-POJO: Todo
-
-Expected JSON structure:
-{
-  "userId": 1,
-  "id": 1,
-  "title": "delectus aut autem",
-  "completed": false
-}
-
-
-
-Task 401 – Retrieve All Todos
-Endpoint:
-
-GET /todos
-
-Requirements:
-- Send a GET request to retrieve all todos.
-- Verify that the status code is 200.
-- Verify that the response body is not empty.
-- Verify that the response contains exactly 200 todos.
-- Deserialize the response into a List<Todo>.
-- Verify that the list is not null.
-- Verify that the first todo has a valid ID greater than 0.
-- Verify that every todo has a non-null title.
-- Verify that every todo has a valid user ID greater than 0.
-- Verify that the completed field contains a boolean value.
-- Log the response only if validation fails.
-
-Task 402 – Retrieve a Todo by ID
-Endpoint:
-
-GET /todos/{id}
-
-Test data:
-
-id = 5
-
-Expected values:
-{
-  "userId": 1,
-  "id": 5,
-  "title": "laboriosam mollitia et enim quasi adipisci quia provident illum",
-  "completed": false
-}
-
-
-Requirements:
-- Send a GET request using the todo ID as a path parameter.
-- Verify that the status code is 200.
-- Verify that the response body is not empty.
-- Deserialize the response into a Todo object.
-- Verify that the returned ID matches the requested ID.
-- Verify that the returned user ID is 1.
-- Verify that the returned title matches the expected title.
-- Verify that the returned completed value is false.
-- Use JUnit assertions to validate the ID, title, and completion status.
-- Log the response only if validation fails.
-
-Task 403 – Retrieve a Non-Existing Todo
+Task 406 – Retrieve a Non-Existing Todo
 Endpoint:
 
 GET /todos/{id}
@@ -79,7 +16,7 @@ Requirements:
 - Verify that the response does not contain todo data.
 - Log the response only if validation fails.
 
-Task 404 – Filter Todos by User ID
+Task 407 – Filter Todos by User ID
 Endpoint:
 
 GET /todos?userId={userId}
@@ -100,7 +37,7 @@ Requirements:
 - Verify that the response contains only todos belonging to the requested user.
 - Log the response only if validation fails.
 
-Task 405 – Filter Todos by Completion Status
+Task 408 – Filter Todos by Completion Status
 Endpoint:
 
 GET /todos?completed={completed}
@@ -121,7 +58,7 @@ Requirements:
 - Verify that no incomplete todos are returned.
 - Log the response only if validation fails.
 
-Task 406 – Filter Todos by User ID and Completion Status
+Task 409 – Filter Todos by User ID and Completion Status
 Endpoint:
 
 GET /todos?userId={userId}&completed={completed}
@@ -141,7 +78,7 @@ Requirements:
 - Verify that every todo has a non-null title.
 - Log the response only if validation fails.
 
-Task 407 – Create a New Todo
+Task 410 – Create a New Todo
 Endpoint:
 
 POST /todos
@@ -165,7 +102,7 @@ Requirements:
 - Use JUnit assertions to verify the generated ID, user ID, title, and completion status.
 - Log the response only if validation fails.
 
-Task 408 – Replace an Existing Todo
+Task 411 – Replace an Existing Todo
 Endpoint:
 
 PUT /todos/{id}
@@ -194,7 +131,7 @@ Requirements:
 - Use JUnit assertions to verify the ID, user ID, title, and completion status.
 - Log the response only if validation fails.
 
-Task 409 – Partially Update an Existing Todo
+Task 412 – Partially Update an Existing Todo
 Endpoint:
 
 PATCH /todos/{id}
@@ -221,7 +158,7 @@ Requirements:
 - Use JUnit assertions to validate the ID and completion status.
 - Log the response only if validation fails.
 
-Task 410 – Update the Title of an Existing Todo
+Task 413 – Update the Title of an Existing Todo
 Endpoint:
 
 PATCH /todos/{id}
@@ -248,7 +185,7 @@ Requirements:
 - Use JUnit assertions to validate the ID and title.
 - Log the response only if validation fails.
 
-Task 411 – Delete an Existing Todo
+Task 414 – Delete an Existing Todo
 Endpoint:
 
 DELETE /todos/{id}
@@ -265,7 +202,7 @@ Requirements:
   - completely empty.
 - Log the response only if validation fails.
 
-Task 412 – Find and Delete a Todo by Title
+Task 415 – Find and Delete a Todo by Title
 Search endpoint:
 
 GET /todos?title={title}
