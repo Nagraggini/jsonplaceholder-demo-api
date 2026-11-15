@@ -1,24 +1,22 @@
 package api.todos.getTodo;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
-
-import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.*;
-
 import org.junit.jupiter.api.Test;
 
 import base.BaseApiTest;
 import io.restassured.response.Response;
 import todoPOJO.Todo;
 
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
-
-class GetTodos extends BaseApiTest{
+class GetTodosPositiveTest extends BaseApiTest{
 
 	/**
 	 * Task 403 – Retrieve Two Todos by IDs
