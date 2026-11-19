@@ -74,7 +74,8 @@ src/test/java
 ├── api
 │   ├── albums
 │   ├── comments
-│   └── photos
+│   ├── photos
+│   └── todos
 └── base
     └── BaseApiTest.java
 
